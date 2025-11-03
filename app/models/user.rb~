@@ -1,0 +1,14 @@
+class User < ApplicationRecord
+  attr_accessor :old_password, :remember_token
+  has_secure_password validations: false
+
+  def remember_me
+    remember_token = SecureRandom.urlsafe_base64
+    update_column :remember_token_digest, digest(remember_token)
+  end
+
+  def forget_me
+    update_column :remember_token_digest, nil
+    self.remember_token = nil
+  end
+end

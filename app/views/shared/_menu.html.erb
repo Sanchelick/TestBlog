@@ -1,0 +1,14 @@
+<% provide :navigation do %>
+  <header>
+    <nav class="navbar mt-1">
+      <div class="navbar-start ml-2">
+	<%= nav_tab "Главная", root_path, class: "navbar-item", current_page: current_page %>
+      </div>
+      <div class="navbar-end mr-2">
+	<%= nav_tab "Зарегестрироваться", new_user_path, class: "navbar-item", current_page: current_page %>
+	<%= nav_tab "Войти", new_session_path, class: "navbar-item", current_page: current_page %>
+      </div>
+    </nav>
+  </header>
+<% end %>
+

@@ -1,0 +1,17 @@
+<% currently_at "Главная" %>
+
+<section class="section">
+  <% @articles.each do |article| %>
+    <article>
+      <h1 class="title"> <%= article.title %> </h1>
+      <h2 class="subtitle"> <%= article.body %> </h2>
+      <%= link_to "Перейти", article_path(article), class: "button is-primary" %>
+      <%= link_to "Удалить", article_path(article), class: "button is-danger",
+		  data: {
+		    turbo_confirm: "Вы уверены?",
+		    turbo_method: :delete} %>
+    </article>
+  <% end %>
+</section>
+<%= current_user.inspect %>
+

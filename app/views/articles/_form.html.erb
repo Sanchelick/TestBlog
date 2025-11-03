@@ -1,0 +1,19 @@
+<div>
+  <%= form_with model: @article do |f| %>
+    <div class="field">
+      <%= f.label :title, class: "label" %>
+      <div class="control">
+	<%= f.text_field :title, class: "input" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :body, class: "label" %>
+      <div class="control">
+	<%= f.text_field :body, class: "input" %>
+      </div>
+    </div>
+    <div class="control">
+      <%= f.submit 'Опубликовать', class: 'button is-link' %>
+    </div>
+  <% end %>
+</div>
