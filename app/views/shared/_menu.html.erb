@@ -5,8 +5,28 @@
 	<%= nav_tab "Главная", root_path, class: "navbar-item", current_page: current_page %>
       </div>
       <div class="navbar-end mr-2">
-	<%= nav_tab "Зарегестрироваться", new_user_path, class: "navbar-item", current_page: current_page %>
-	<%= nav_tab "Войти", new_session_path, class: "navbar-item", current_page: current_page %>
+	<% if user_singed_in? %>
+	  <div class="dropdown is-hoverable is-right">
+	    <div class="dropdown-trigger">
+	      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+		<%= content_tag(:span, current_user.name) %>
+		<span class="icon is-small">
+		  <i class="fas fa-angle-down" aria-hidden="true"></i>
+		</span>
+	      </button>
+	    </div>
+	    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+	      <div class="dropdown-content">
+		<div class="dropdown-item"> <%= link_to "Выйти", session_path, class: "has-text-grey",
+							data: {turbo_method: :delete,
+							       turbo_confirm: "Вы хотите выйти?"}%>
+		</div>
+	      </div>
+	    </div>
+	<% else %>
+	  <%= nav_tab "Зарегестрироваться", new_user_path, class: "navbar-item", current_page: current_page %>
+	  <%= nav_tab "Войти", new_session_path, class: "navbar-item", current_page: current_page %>
+	<% end %>
       </div>
     </nav>
   </header>

@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "articles#index"
 
-  resources :articles, only: %i[show destroy new create]
+  resources :articles do
+    resources :comments, only: %i[new create]
+  end
   
   resources :users, only: %i[new create]
 
-  resources :sessions, only: %i[new create]
+  resource :session, only: %i[new create destroy]
 end

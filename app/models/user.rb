@@ -1,8 +1,11 @@
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token
   has_secure_password validations: false
-
+  has_many :comments
+  
   validate :password_presence
+  validates :name, presence: true, length: {minimum: 5}
+  validates :email, presence: true
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64

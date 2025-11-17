@@ -1,2 +1,18 @@
-<%= @article.title %>
-<%= @article.body %>
+<%= currently_at "Главная" %>
+<h1 class="is-size-1"><%= @article.title %></h1><br>
+<h3 class="is-size-3"><%= @article.body %></h3>
+<%= form_with model: [@article, @comment] do |f| %>
+  <div class="field">
+    <%= f.label "Написать комментарий:", class: "label" %>
+    <div class="control mr-5 ml-2">
+      <%= f.text_field :text, class: "input" %>
+    </div>
+    <div class="control mt-3 ml-2">
+      <%= f.submit 'Опубликовать', class: 'button is-link' %>
+    </div>
+<% end %>
+<h3>Комментарии:</h3>
+
+<% @comments.each do |comment| %>
+  <%= comment.text %>
+<% end %>

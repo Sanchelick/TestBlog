@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
 
+  before_action :find_article, only: %i[show edit update destroy]
+
   def index
     @articles = Article.all
   end
 
   def show
-    @article = Article.find params[:id]
+    @comment = @article.comments.build
+    @comments = @article.comments.order created_at: :desc
   end
 
   def new
@@ -25,6 +28,19 @@ class ArticlesController < ApplicationController
     
   end
 
+  def edit
+  end
+
+  def update
+    if @article.update article_params
+      flash[:success] = "Статья обновлена"
+      redirect_to root_path
+    else
+      render :edit
+    end
+    
+  end
+  
   def destroy
     @article.destroy
     flash[:succsess] = "Статья удалена"
@@ -36,6 +52,10 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :body)
+  end
+
+  def find_article
+    @article = Article.find params[:id]
   end
   
 end
