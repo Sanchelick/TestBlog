@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_no_authentication, %i[new create]
+  before_action :require_no_authentication, only: %i[new create]
+  before_action :require_authentication, only: %i[edit update]
+  before_action :set_user!, only: %i[edit update]
   
   def new
     @user = User.new
@@ -16,10 +18,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+
+    if @user.update(user_params)
+      flash[:success] = "Пользователь обновлён"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :old_password)
+  end
+
+  def set_user!
+    @user = User.find params[:id]
   end
 
   

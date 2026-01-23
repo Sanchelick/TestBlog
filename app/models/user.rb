@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_many :comments
   
   validate :password_presence
+  validates :password, confirmation: true, allow_blank: true, length: {minimum: 8, maximum: 30}
+  validate :correct_old_password, on: :update
+  
   validates :name, presence: true, length: {minimum: 5}
   validates :email, presence: true
 
@@ -22,10 +25,18 @@ class User < ApplicationRecord
     self.remember_token = nil
   end
 
+
   private
 
+  def correct_old_password
+    return if BCrypt::Password.new(password_digest_was).is_password?(old_password)
+
+    errors.add :old_password, "не верный"
+    
+  end
+
   def password_presence
-    errors.add(:password, :blank) if  password_digest.blank?
+    errors.add(:password, :blank) if password_digest.blank?
   end
 
   def digest(string)

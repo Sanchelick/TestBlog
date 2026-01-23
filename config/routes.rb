@@ -17,7 +17,13 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
   end
   
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create edit update]
 
   resource :session, only: %i[new create destroy]
+
+  namespace :admin do
+    resource :users, only: %i[create]
+    get "users_index" => "users#index"
+    get "articles_index" => "articles#index"
+  end
 end
