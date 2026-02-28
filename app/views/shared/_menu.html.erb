@@ -2,24 +2,38 @@
   <header>
     <nav class="navbar mt-1">
       <div class="navbar-start ml-2">
-	<%= nav_tab "Главная", root_path, class: "navbar-item", current_page: current_page %>
+	<%= nav_tab t('nav_menu.home'), root_path, class: "navbar-item", current_page: current_page %>
+	<% if user_singed_in? %>
+	  <%= nav_tab t('nav_menu.write_article'), new_article_path, class: "navbar-item", current_page: current_page %>
+	<% end %>
       </div>
       <div class="navbar-end mr-2">
 	<% if user_singed_in? %>
-	  <div class="navbar-item has-dropdown is-hoverable">
-	    <%= link_to current_user.name, "#", class: "navbar-item" %>
-            <div class="navbar-dropdown is-right">
-	      <%= link_to "Редактировать", edit_user_path(current_user), class: "navbar-item" %>
-	      <%= link_to "Выйти", session_path, class: "navbar-item",
-			  data: {turbo_method: :delete,
-				 turbo_confirm: "Вы хотите выйти?"} %>
-	      
-            </div>
-	  </div>
+	  <% if current_user.role == 'admin' %>
+	    <div class="navbar-item has-dropdown is-hoverable">
+	      <%= nav_tab t('nav_menu.administration'), "#", class: "navbar-item", current_page: current_page %>
+	      <div class="navbar-dropdown is-right">
+		<%= link_to t('nav_menu.users'), admin_users_index_path, class: "navbar-item" %>
+		<%= link_to t('nav_menu.articles'), admin_articles_index_path, class: "navbar-item" %>
+		
+	      </div>
+	    </div>
+	  <% end %>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+	    <%= nav_tab  current_user.name, "#", class: "navbar-item", current_page: current_page %>
+        <div class="navbar-dropdown is-right">
+	  <%= link_to t('nav_menu.user_edit'), edit_user_path(current_user), class: "navbar-item" %>
+	  <%= link_to t('nav_menu.user_exit'), session_path, class: "navbar-item",
+		      data: {turbo_method: :delete,
+			     turbo_confirm: "Вы хотите выйти?"} %>
+	  
+        </div>
+      </div>
       </div>
 	<% else %>
-      <%= nav_tab "Зарегестрироваться", new_user_path, class: "navbar-item", current_page: current_page %>
-      <%= nav_tab "Войти", new_session_path, class: "navbar-item", current_page: current_page %>
+      <%= nav_tab t('nav_menu.sign_up'), new_user_path, class: "navbar-item", current_page: current_page %>
+      <%= nav_tab t('nav_menu.sign_in'), new_session_path, class: "navbar-item", current_page: current_page %>
 	<% end %>
       </div>
     </nav>

@@ -1,0 +1,42 @@
+ru:
+ nav_menu:
+  home: "Главная"
+  write_article: "Написать статью"
+  administration: "Администрирование"
+  users: "Пользователи"
+  articles: "Статьи"
+  user_edit: "Редактироват"
+  user_exit: "Выйти"
+  sign_up: "Зарегистрироваться"
+  sign_in: "Войти"
+ user:
+  create:
+   success: "Пользователь зарегистрирован"
+   danger: "Что-то пошло не так"
+  update:
+   success: "Пользователь обновлён"
+ articles:
+  create:
+   success: "Статья создана"
+  update:
+   success: "Статья обновлена"
+  destroy:
+   success: "Статья удалена"
+ comments:
+  create:
+   success: "Комментарий оставлен"
+ activerecord:
+  models:
+   user: "Пользователь"
+   article: "Статья"
+   comment: "Комментарий"
+  attributes:
+   article:
+    title: "Название"
+    body: "Текст"
+   user:
+    password: "Пароль"
+    password_confirmation: "Подтверждение пароля"
+    old_password: "Старый пароль"
+    name: "Имя"
+    email: "Электронная почта"

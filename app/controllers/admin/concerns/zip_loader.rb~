@@ -1,0 +1,7 @@
+module ZipLoader
+  extend ActiveSupport::Concern
+
+  included do
+    
+  end
+end

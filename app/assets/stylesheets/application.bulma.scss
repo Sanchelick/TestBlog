@@ -38,3 +38,11 @@
 
 @use 'bulma/bulma';
 
+.field_with_errors {
+    .control {
+	border-color: hsl(348, 100%, 61%);
+    }
+    .label {
+	color: hsl(348, 100%, 61%);
+    }
+}

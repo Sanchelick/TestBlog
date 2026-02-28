@@ -4,4 +4,6 @@ class ApplicationController < ActionController::Base
 
   include Authentication
   include ErrorHandling
+  include Pagy::Method
+  include Internationalization
 end

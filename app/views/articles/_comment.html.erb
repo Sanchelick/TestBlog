@@ -1,0 +1,19 @@
+<div class="box ml-3 mr-3 mt-1">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+	<%= image_tag comment.user.decorate.gravatar, alt: comment.user.name %>
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= comment.user.name %></strong> <small> <%= comment.user.email %></small>
+          <small><%= comment.formated_created_at %></small>
+          <br />
+         <%= comment.text %> 
+        </p>
+      </div>
+    </div>
+  </article>
+</div>

@@ -1,0 +1,12 @@
+<tr>
+  <td> <%= user.name %></td>
+  <td> <%= user.email %></td>
+  <td> <%= user.role %></td>
+  <td> <%= user.created_at %></td>
+  <td>
+  <%= link_to "Обновить", edit_admin_users_path(user), class: "button is-success" %>
+  <%= link_to "Удалить", admin_users_path(user), class: "button is-danger",
+	      data: {turbo_method: :delete,
+		     turbo_confirm: "Вы уверены?"}%>
+  </td>
+</tr>

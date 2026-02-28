@@ -1,18 +1,31 @@
-<%= currently_at "Главная" %>
-<h1 class="is-size-1"><%= @article.title %></h1><br>
-<h3 class="is-size-3"><%= @article.body %></h3>
-<%= form_with model: [@article, @comment] do |f| %>
-  <div class="field">
-    <%= f.label "Написать комментарий:", class: "label" %>
-    <div class="control mr-5 ml-2">
-      <%= f.text_field :text, class: "input" %>
-    </div>
-    <div class="control mt-3 ml-2">
-      <%= f.submit 'Опубликовать', class: 'button is-link' %>
-    </div>
+<%= currently_at t('nav_menu.home') %>
+<div class="article">
+  <h1 class="is-size-2 ml-2"><%= @article.title %></h1><br>
+  <h3 class="is-size-4 ml-2"><%= @article.body %></h3>
+</div>
+<% if current_user&.moderator_or_admin? || current_user&.id == @article.user_id %>
+  <div class="article-buttons">
+    <%= link_to "Изменть", edit_article_path(@article), class: "button is-info" %>
+    <%= link_to "Удалить", article_path(@article), class: "button is-danger",
+		data: {
+		  turbo_confirm: "Вы уверены?",
+		  turbo_method: :delete} %>
+  </div>
 <% end %>
-<h3>Комментарии:</h3>
+<% if current_user.present? %>
+  <%= form_with model: [@article, @comment] do |f| %>
+    <div class="field">
+      <%= f.label "Написать комментарий:", class: "label ml-2" %>
+      <div class="control mr-5 ml-2">
+	<%= f.text_field :text, class: "input" %>
+      </div>
+      <div class="control mt-3 ml-2">
+	<%= f.submit 'Опубликовать', class: 'button is-link' %>
+      </div>
+  <% end %>
+<% end %>
+<h3 class="ml-2 mt-2">Комментарии:</h3>
 
 <% @comments.each do |comment| %>
-  <%= comment.text %>
+  <%= render "comment", comment: comment %>
 <% end %>

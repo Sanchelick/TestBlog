@@ -1,14 +1,15 @@
 class ArticlesController < ApplicationController
 
   before_action :find_article, only: %i[show edit update destroy]
+  before_action :require_authentication, only: %i[new create edit update destroy]
 
   def index
-    @articles = Article.all
+    @pagy, @articles = pagy Article.order(created_at: :desc)
   end
 
   def show
     @comment = @article.comments.build
-    @comments = @article.comments.order created_at: :desc
+    @comments = @article.comments.order(created_at: :desc).decorate
   end
 
   def new
@@ -20,7 +21,7 @@ class ArticlesController < ApplicationController
     @article = Article.create article_params
 
     if @article.save
-      flash[:success] = "Статья создана"
+      flash[:success] = t('.success')
       redirect_to root_path
     else
       render :new
@@ -33,7 +34,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update article_params
-      flash[:success] = "Статья обновлена"
+      flash[:success] = t('.success')
       redirect_to root_path
     else
       render :edit
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
   
   def destroy
     @article.destroy
-    flash[:succsess] = "Статья удалена"
+    flash[:succsess] = t('.success')
     redirect_to root_path
   end
 
@@ -51,7 +52,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body).merge(user_id: current_user&.id)
   end
 
   def find_article

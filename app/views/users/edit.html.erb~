@@ -1,0 +1,4 @@
+<% currently_at "Редактировать" %>
+<h1>Редактирование пользователя <%= current_user.name %> </h1>
+
+<%= render "form" %>

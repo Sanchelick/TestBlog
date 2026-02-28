@@ -25,10 +25,9 @@
   <body>
     <%= yield :navigation %>
 
-    <%= flash.each do |k, v | %>
-      <%= tag.div v, class: "notification is-#{k}", role: "notification" %>
+    <% flash.each do |k, v| %>
+      <%= tag.div v, class: "notification is-#{k}", role: "notification", style: "margin: 1% 10% 1% 10%" %>
     <% end %>
-
     
     <%= yield %>
   </body>

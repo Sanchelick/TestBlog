@@ -1,0 +1,13 @@
+<article class="mt-5">
+  <%= article.user.name %>
+  <h1 class="title"> <%= article.title %> </h1>
+  <h2 class="subtitle"> <%= article.body %> </h2>
+  <%= link_to "Перейти", article_path(article), class: "button is-primary" %>
+  <% if current_user&.moderator_or_admin? || current_user&.id == article.user_id%>
+    <%= link_to "Изменть", edit_article_path(article), class: "button is-info" %>
+    <%= link_to "Удалить", article_path(article), class: "button is-danger",
+		data: {
+		  turbo_confirm: "Вы уверены?",
+		  turbo_method: :delete} %>
+  <% end %>
+</article>

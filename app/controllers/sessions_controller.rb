@@ -6,21 +6,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email])
     
-    if user&.authenticate(params[:password])
-      sing_in user
-      remember(user) if params[:remember_me] == "1"
+    if @user&.authenticate(params[:password])
+      sign_in @user
+      remember(@user) if params[:remember_me] == "1"
       redirect_to root_path
     else
-      flash.now[:warning] = "Неправильная почта и/или пароль"
-      render :new
+      flash[:warning] = "Неправильная почта и/или пароль"
+      render :new, status: :unprocessable_entity
     end
    
   end
 
   def destroy
-    sing_out
+    sign_out
     flash[:success] = "Вы вышли из системы"
     redirect_to root_path
   end

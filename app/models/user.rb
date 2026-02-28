@@ -1,11 +1,14 @@
 class User < ApplicationRecord
-  attr_accessor :old_password, :remember_token
+  attr_accessor :old_password, :remember_token, :admin_edit
+#  enum :role, { basic: :basic, moderator: :moderator, admin: :admin }, suffix: :role
   has_secure_password validations: false
-  has_many :comments
+
+  has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   validate :password_presence
   validates :password, confirmation: true, allow_blank: true, length: {minimum: 8, maximum: 30}
-  validate :correct_old_password, on: :update
+  validate :correct_old_password, on: :update, if: -> {password.present? && !admin_edit}
   
   validates :name, presence: true, length: {minimum: 5}
   validates :email, presence: true
@@ -24,7 +27,6 @@ class User < ApplicationRecord
     update_column :remember_token_digest, nil
     self.remember_token = nil
   end
-
 
   private
 

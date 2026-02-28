@@ -1,19 +1,22 @@
-<div>
+<turbo-frame id="article_form">
+  <div class="article-form">
+  <%= render 'shared/errors', object: @article %>
   <%= form_with model: @article do |f| %>
     <div class="field">
-      <%= f.label :title, class: "label" %>
+      <%= f.label "Название", class: "label" %>
       <div class="control">
 	<%= f.text_field :title, class: "input" %>
       </div>
     </div>
     <div class="field">
-      <%= f.label :body, class: "label" %>
+      <%= f.label "Текст", class: "label" %>
       <div class="control">
 	<%= f.text_field :body, class: "input" %>
       </div>
     </div>
     <div class="control">
-      <%= f.submit 'Опубликовать', class: 'button is-link' %>
+      <%= f.submit (@article.new_record? ? 'Опубликовать' : "Изменть"), class: 'button is-link' %>
     </div>
   <% end %>
-</div>
+  </div>
+</turbo-frame>

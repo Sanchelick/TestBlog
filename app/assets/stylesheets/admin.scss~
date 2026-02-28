@@ -1,0 +1,9 @@
+.zip-uploader {
+  display: flex;
+  height: 40px; 
+  gap: 2%;
+  
+  button {
+    height: 4vh;
+  }
+}

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resource :session, only: %i[new create destroy]
 
   namespace :admin do
-    resource :users, only: %i[create]
+    resource :users, only: %i[create edit update destroy]
     get "users_index" => "users#index"
     get "articles_index" => "articles#index"
   end

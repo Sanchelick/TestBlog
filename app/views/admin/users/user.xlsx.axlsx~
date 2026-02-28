@@ -1,0 +1,9 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "User") do |sheet|
+  sheet.add_row ["ID", obj.id]
+  sheet.add_row ["Name", obj.name]
+  sheet.add_row ["email", obj.email]
+  sheet.add_row ["Created at", obj.created_at]
+  sheet.add_row ["Updated at", obj.updated_at]
+end

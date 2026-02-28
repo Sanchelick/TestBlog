@@ -6,7 +6,7 @@ module Authentication
 
     def current_user
       user = session[:user_id].present? ? user_from_session : user_from_token
-      @current_user = user
+      @current_user = user&.decorate
     end
 
     def user_from_session
@@ -18,7 +18,7 @@ module Authentication
       token = cookies.encrypted[:remember_token]
       return unless user&.remember_token_authenticated?(token)
 
-      sing_in user
+      sign_in user
       user
     end
 
@@ -26,11 +26,20 @@ module Authentication
       current_user.present?
     end
 
-    def sing_in(user)
+    def user_is_admin?
+      return if current_user&.role == "admin"
+
+      flash[:warning] = "У вас нет на это прав :)"
+      redirect_to root_path
+    end
+
+    def sign_in(user)
       session[:user_id] = user.id
+      logger.debug "User class: #{user.class}"
+      logger.debug "Is decorated? #{user.respond_to?(:decorated?)}"
     end
     
-    def sing_out
+    def sign_out
       forget current_user
       session.delete :user_id
       @current_user = nil

@@ -1,0 +1,15 @@
+<% currently_at "Список статей" %>
+
+<h2 class="title ml-5 mt-3">Список статей:</h2>
+<table class="table is-stripped ml-5" style="width: 97%">
+  <thead>
+    <th>ID</th>
+    <th>Создатель</th>
+    <th>Название</th>
+    <th>Дата создания</th>
+  </thead>
+  <% @articles.each do |article| %>
+    <%= render 'article', article: article %>
+  <% end %>
+</table>
+<%= link_to "Выгрузить пользователей", admin_articles_index_path(format: :zip), class: 'button is-link ml-5' %>

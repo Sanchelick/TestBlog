@@ -11,9 +11,10 @@ class UsersController < ApplicationController
     @user = User.create user_params
 
     if @user.save
-      flash[:success] = 'Пользователь зарегестрирован'
+      flash[:success] = t('.success')
       redirect_to root_path
     else
+      flash.now[:danger] = t('.danger')
       render :new
     end
   end
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
   def update
 
     if @user.update(user_params)
-      flash[:success] = "Пользователь обновлён"
+      flash[:success] = t('.success')
       redirect_to root_path
     else
       render :edit
@@ -38,8 +39,9 @@ class UsersController < ApplicationController
   end
 
   def set_user!
-    @user = User.find params[:id]
+    @user = User.find(params[:id]).decorate
   end
 
   
 end
+

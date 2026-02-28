@@ -1,0 +1,32 @@
+<% currently_at t('nav_menu.administration') %>
+
+<h2 class="title ml-5 mt-3">Список статей:</h2>
+<table class="table is-stripped ml-5" style="width: 97%">
+  <thead>
+    <th>ID</th>
+    <th>Создатель</th>
+    <th>Название</th>
+    <th>Дата создания</th>
+  </thead>
+  <% @articles.each do |article| %>
+    <%= render 'article', article: article %>
+  <% end %>
+</table>
+<div style="display: flex; height: 1%;" class="ml-5">
+  <%= link_to "Выгрузить статьи", admin_articles_index_path(format: :zip), class: 'button is-link' %>
+  <%= form_with url: admin_users_path do |f| %>
+    <div class="zip-uploader">
+      <div class="file has-name">
+	<span class="file-cta ml-3">
+	  <span class="file-icon" style="width: 10vw">
+	    <%= f.label :archive, 'Выбрать файл...', class: 'file-label' %>
+ 	    <%= f.file_field :archive, class: "file-input" %>
+	  </span>
+	</span>
+	<span class="file-name"> <%= params[:archive]&.file_name || "..." %> </span>
+      </div>
+      <%= f.submit "Загрузить статьи из файла", class: "button is-primary" %>
+    </div>
+</div>
+  <% end %>
+</div>

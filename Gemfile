@@ -25,6 +25,8 @@ gem "jbuilder"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+gem 'rails-i18n', '~> 8.1'
+
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
 gem "solid_queue"
@@ -44,6 +46,10 @@ gem 'rubyzip', '~> 3.2', '>= 3.2.2'
 gem 'caxlsx', '~> 4.4', '>= 4.4.1'
 gem 'caxlsx_rails', '~> 0.6.4'
 gem 'rubyXL', '~> 3.4', '>= 3.4.35'
+
+gem 'pagy', '~> 43.2', '>= 43.2.8'
+
+gem 'draper', '~> 4.0', '>= 4.0.6'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
