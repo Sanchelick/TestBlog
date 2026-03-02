@@ -82,6 +82,8 @@ production:
   primary: &primary_production
     <<: *default
     database: <%= ENV["DATABASE_URL"] %>
+    username: <%= ENB["DATABASE_USER"] %>
+    password: <%= ENV["DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: blog_production_cache
