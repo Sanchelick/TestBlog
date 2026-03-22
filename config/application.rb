@@ -26,5 +26,7 @@ module Blog
 
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :en
+
+    config.assets.compile = true
   end
 end
