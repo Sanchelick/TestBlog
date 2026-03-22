@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add a click event on each of them
   $navbar.forEach( el => {
-    el.addEventListener('click', () => {
 
       // Get the target from the "data-target" attribute
       const target = el.dataset.target;
@@ -18,4 +17,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-

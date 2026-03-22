@@ -11,7 +11,17 @@
     <div class="field">
       <%= f.label "Текст", class: "label" %>
       <div class="control">
-	<%= f.text_field :body, class: "input" %>
+	<%= f.text_area :body, class: "input" %>
+      </div>
+    </div>
+    <div class="mt-1">
+      <div class="mb-3">
+	<%= f.label "Теги:", class: "label" %>
+      </div>
+      <div>
+	<select>
+	  <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true, class: 'js-multiple-select' %>
+	</select>
       </div>
     </div>
     <div class="control">

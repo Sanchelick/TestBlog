@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   before_action :fetch_tags, only: %i[new edit]
 
   def index
-    @pagy, @articles = pagy Article.all_by_tags(params[:tag_ids])
+    @pagy, @articles = pagy Article.order(created_at: :desc)
   end
 
   def show

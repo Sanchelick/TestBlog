@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "articles#index"
 
+  namespace :api do
+    resources :tags, only: :index
+  end
+
   resources :articles do
     resources :comments, only: %i[new create]
   end

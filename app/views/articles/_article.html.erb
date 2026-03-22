@@ -2,6 +2,11 @@
   <%= article.user.name %>
   <h1 class="title"> <%= article.title %> </h1>
   <h2 class="subtitle"> <%= article.body %> </h2>
+  <div class="article_tags mb-2">
+    <% article.tags.each do |tag|%>
+      <%= render "tags/tag", tag: tag %>
+    <% end %>
+  </div>
   <%= link_to "Перейти", article_path(article), class: "button is-primary" %>
   <% if current_user&.moderator_or_admin? || current_user&.id == article.user_id%>
     <%= link_to "Изменть", edit_article_path(article), class: "button is-info" %>

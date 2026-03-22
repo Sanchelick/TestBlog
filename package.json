@@ -3,10 +3,10 @@
   "private": "true",
   "dependencies": {
     "bulma": "^1.0.4",
-    "sass": "^1.92.1"
+    "sass": "^1.92.1",
+    "tom-select": "^2.5.2"
   },
-    "scripts": {
-	"build:css": "find ./app/assets/stylesheets -name '*.scss' -exec bash -c 'INPUT={}; OUTPUT=$(echo $(basename $INPUT .scss) | sed 's/\\..*//').css; sass $INPUT:./app/assets/builds/$OUTPUT --no-source-map --load-path=node_modules' \\;"
-}
-
+  "scripts": {
+    "build:css": "find ./app/assets/stylesheets -name '*.scss' -exec bash -c 'INPUT={}; OUTPUT=$(echo $(basename $INPUT .scss) | sed 's/\\..*//').css; sass $INPUT:./app/assets/builds/$OUTPUT --no-source-map --load-path=node_modules' \\;"
+  }
 }
