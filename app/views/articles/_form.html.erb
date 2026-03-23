@@ -20,7 +20,8 @@
       </div>
       <div>
 	<select>
-	  <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true, class: 'js-multiple-select' %>
+	  <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true,
+	  data: {controller: 'select'} %>
 	</select>
       </div>
     </div>
