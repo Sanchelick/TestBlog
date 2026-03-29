@@ -49,6 +49,8 @@ gem 'rubyXL', '~> 3.4', '>= 3.4.35'
 gem 'pagy', '~> 43.2', '>= 43.2.8'
 
 gem 'draper', '~> 4.0', '>= 4.0.6'
+
+gem 'carrierwave', '~> 3.1', '>= 3.1.2'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

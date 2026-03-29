@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
 
   def create
 
-    @article = Article.create article_params
+    @article = Article.new article_params
 
     if @article.save
       flash[:success] = t('.success')
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, tag_ids: []).merge(user_id: current_user&.id)
+    params.require(:article).permit(:title, :body, tag_ids: [], pictures: []).merge(user_id: current_user&.id)
   end
 
   def find_article
