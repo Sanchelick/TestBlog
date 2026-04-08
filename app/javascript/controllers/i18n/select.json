@@ -1,10 +1,10 @@
 {
     "ru": {
-	"remove_button": "Удалить элемент",
+	"remove_button": "Удалить тег",
 	"no_results": "Ничего не нашлось"
     },
     "en": {
-	"remove_button": "Remove element",
+	"remove_button": "Remove tag",
 	"no_results": "No results"
     }
 }

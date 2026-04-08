@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 
   before_action :find_article, only: %i[show edit update destroy]
   before_action :require_authentication, only: %i[new create edit update destroy]
-  before_action :fetch_tags, only: %i[new edit]
+  before_action :fetch_tags, only: %i[new create edit update]
 
   def index
     @pagy, @articles = pagy Article.all_by_tags(params[:tag_ids])
@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-
     @article = Article.new article_params
 
     if @article.save
@@ -53,7 +52,9 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, tag_ids: [], pictures: []).merge(user_id: current_user&.id)
+    params.require(:article).permit(:title, :body,
+                                    tag_ids: [],
+                                    pictures: []).merge(user_id: current_user&.id)
   end
 
   def find_article

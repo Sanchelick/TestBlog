@@ -35,8 +35,6 @@ module Authentication
 
     def sign_in(user)
       session[:user_id] = user.id
-      logger.debug "User class: #{user.class}"
-      logger.debug "Is decorated? #{user.respond_to?(:decorated?)}"
     end
     
     def sign_out

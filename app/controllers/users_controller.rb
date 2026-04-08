@@ -8,10 +8,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create user_params
+    @user = User.new user_params
 
     if @user.save
       flash[:success] = t('.success')
+      sign_in @user
       redirect_to root_path
     else
       flash.now[:danger] = t('.danger')
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def update
-
     if @user.update(user_params)
       flash[:success] = t('.success')
       redirect_to root_path

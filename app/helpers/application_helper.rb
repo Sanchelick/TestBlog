@@ -16,5 +16,4 @@ module ApplicationHelper
                         
     link_to(title, url, options)
   end
-  
 end

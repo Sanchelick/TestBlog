@@ -1,0 +1,29 @@
+.article-form {
+    margin: 2% 2% 0;
+    border: solid 2px;
+    border-radius: 20px;
+    padding: 1%;
+}
+.article-buttons {
+    margin-left: 50%;
+}
+
+.article {
+    margin: 1% 1% 1% 1%;
+}
+
+.pictures {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pictures .picture {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 20px;
+}
+
+.pictures .picture:hover {
+    border: 2px solid white;
+    box-sizing: border-box;
+}

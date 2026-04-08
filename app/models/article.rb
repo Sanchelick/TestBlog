@@ -9,6 +9,8 @@ class Article < ApplicationRecord
   validates :title, length: {minimum: 5, maximum: 50}
   validates :body, length: {minimum: 10, maximum: 200}
 
+  has_many_attached :pictures
+
   scope :all_by_tags, ->(tag_ids) do
     articles = includes(:user, :article_tags, :tags)
     articles = articles.joins(:tags).where(tags: tag_ids) if tag_ids

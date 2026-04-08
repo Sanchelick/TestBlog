@@ -1,11 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
-import TomSelect from "tom-select"
-import Translations from './i18n/select.json'
 
+//const i18n = Translations[document.querySelector('body').dataset.lang]
 export default class extends Controller {
-  // We bind the select to tom-select on connect
-  connect() {
-    new TomSelect(this.element)
-  }
+    connect() {
+	new window.TomSelect(this.element,{
+	plugins: {
+		remove_button:{
+			title:'Remove this item',
+		}
+	},
+	}
+			    )
+    }
 }
-    

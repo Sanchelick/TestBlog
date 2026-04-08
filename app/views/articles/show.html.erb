@@ -1,17 +1,28 @@
 <%= currently_at t('nav_menu.home') %>
+
 <div class="article">
-  <h1 class="is-size-2 ml-2"><%= @article.title %></h1><br>
+  <div class="columns">
+    <h1 class="is-size-2 ml-2 column is-three-quarters"><%= @article.title %></h1>
+    <div class="column">
+      <% if current_user&.moderator_or_admin? || current_user&.id == @article.user_id %>
+	<div class="article-buttons">
+	  <%= link_to "Изменть", edit_article_path(@article), class: "button is-info" %>
+	  <%= link_to "Удалить", article_path(@article), class: "button is-danger",
+		      data: {
+			turbo_confirm: "Вы уверены?",
+			turbo_method: :delete} %>
+	</div>
+      <% end %>
+    </div>
+  </div> 
   <h3 class="is-size-4 ml-2"><%= @article.body %></h3>
-</div>
-<% if current_user&.moderator_or_admin? || current_user&.id == @article.user_id %>
-  <div class="article-buttons">
-    <%= link_to "Изменть", edit_article_path(@article), class: "button is-info" %>
-    <%= link_to "Удалить", article_path(@article), class: "button is-danger",
-		data: {
-		  turbo_confirm: "Вы уверены?",
-		  turbo_method: :delete} %>
+  <div class="pictures">
+    <% @article.pictures.each do |pick| %>
+      <%= image_tag pick.representation(resize_to_limit: [300, 300]), class: "picture"  %>
+    <% end %>
   </div>
-<% end %>
+</div>
+
 <% if current_user.present? %>
   <%= form_with model: [@article, @comment] do |f| %>
     <div class="field">

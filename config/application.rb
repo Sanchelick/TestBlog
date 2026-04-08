@@ -28,5 +28,7 @@ module Blog
     config.i18n.default_locale = :en
 
     config.assets.compile = true
+
+    config.active_storage.service = :local
   end
 end

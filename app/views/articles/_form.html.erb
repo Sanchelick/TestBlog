@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "article-form" do %>
+<%= turbo_frame_tag Article.new do %>
   <div class="article-form">
     <%= render 'shared/errors', object: @article %>
     <%= form_with model: @article do |f| %>
@@ -17,17 +17,18 @@
 	    </div>
 	  </div>
 	  <div>
+	    <%= f.label "Теги (необязательно):", class: "label" %>
 	    <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true,
 	     data: {controller: 'select'} %>
 	  </div>
 	</div>
 	<div class="column">
 	  <%= f.label "Изображения (необязательно):", class: "file-label mb-2" %>
-	  <%= render "pictures_field" %>
+	  <%= f.file_field :pictures, multiple: true %>
 	</div>
       </div>
       <div class="control">
-	<%= f.submit (@article.new_record? ? 'Опубликовать' : "Изменть"), class: 'button is-link' %>
+	<%= f.submit (@article.new_record? ? 'Опубликовать' : "Изменить"), class: 'button is-link' %>
       </div>
     <% end %>
   </div>
