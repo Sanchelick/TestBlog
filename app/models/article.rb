@@ -16,4 +16,14 @@ class Article < ApplicationRecord
     articles = articles.joins(:tags).where(tags: tag_ids) if tag_ids
     articles.order(created_at: :desc)
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[article]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title body]
+  end
+
+  
 end

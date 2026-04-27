@@ -3,9 +3,10 @@ class ArticlesController < ApplicationController
   before_action :find_article, only: %i[show edit update destroy]
   before_action :require_authentication, only: %i[new create edit update destroy]
   before_action :fetch_tags, only: %i[new create edit update]
+  before_action :set_search, only: %i[index]
 
   def index
-    @pagy, @articles = pagy Article.all_by_tags(params[:tag_ids])
+    @pagy,  @articles = pagy @q.result(distinct: true).all_by_tags(params[:tag_ids])
   end
 
   def show
@@ -64,6 +65,10 @@ class ArticlesController < ApplicationController
 
   def fetch_tags
     @tags = Tag.all
+  end
+
+  def set_search
+    @q = Article.ransack(params[:q])
   end
   
 end

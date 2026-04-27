@@ -1,7 +1,7 @@
-<%= turbo_frame_tag Article.new do %>
+<%= turbo_frame_tag article do %>
   <div class="article-form">
-    <%= render 'shared/errors', object: @article %>
-    <%= form_with model: @article do |f| %>
+    <%= render 'shared/errors', object: article %>
+    <%= form_with model: article, data: {turbo_frame: "_top"} do |f| %>
       <div class="columns">
 	<div class="column is-three-quarters">
 	  <div class="field">
@@ -28,7 +28,7 @@
 	</div>
       </div>
       <div class="control">
-	<%= f.submit (@article.new_record? ? 'Опубликовать' : "Изменить"), class: 'button is-link' %>
+	<%= f.submit (article.new_record? ? 'Опубликовать' : "Изменить"), class: 'button is-link' %>
       </div>
     <% end %>
   </div>

@@ -16,6 +16,10 @@ ru:
   update:
    success: "Пользователь обновлён"
  articles:
+  form:
+   search_label: "Поиск:"
+   button:
+    search: "Найти"
   create:
    success: "Статья создана"
   update:

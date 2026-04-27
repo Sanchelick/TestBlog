@@ -1,6 +1,9 @@
 <% currently_at t('nav_menu.home') %>
 
-<div class="ml-5 mt-5"><%== @pagy.series_nav(:bulma) if @pagy.pages > 1 %></div>
+<div class="ml-5 mt-5">
+  <%== @pagy.series_nav(:bulma) if @pagy.pages > 1 %>
+  <div class="is-right"><%= render "search_form" %></div>
+</div>
 
 <section class="section">
   <% @articles.each do |article| %>

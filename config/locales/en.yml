@@ -16,6 +16,10 @@ en:
   update:
    success: "User update"
  articles:
+  form:
+   search_label: "Search:"
+   button:
+    search: "Search"
   create:
    success: "Article create"
   update:
