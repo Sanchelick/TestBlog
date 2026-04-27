@@ -11,12 +11,19 @@ class SessionsController < ApplicationController
     if @user&.authenticate(params[:password])
       sign_in @user
       remember(@user) if params[:remember_me] == "1"
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.turbo_frames { turbo_stream.redirect_to root_path }
+      end
     else
       flash[:warning] = "Неправильная почта и/или пароль"
       render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new }
+        format.turbo_frames { turbo_stream.render :new}
+      end
     end
-   
+    
   end
 
   def destroy

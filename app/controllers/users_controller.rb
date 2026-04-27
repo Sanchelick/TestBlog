@@ -13,7 +13,10 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = t('.success')
       sign_in @user
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.turbo_frames { turbo_stream.redirect_to root_path }
+      end
     else
       flash.now[:danger] = t('.danger')
       render :new
@@ -26,7 +29,10 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = t('.success')
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.turbo_frames { turbo_stream.redirect_to root_path }
+      end
     else
       render :edit
     end

@@ -1,8 +1,8 @@
-<turbo-frame id="login_form">
+<%= turbo_frame_tag user do %>
   <div class="mr-5 ml-5">
     
-    <%= form_with model: @user, local: true do |f| %>
-      <%= render "shared/errors", object: @user%>
+    <%= form_with model: user do |f| %>
+      <%= render "shared/errors", object: user%>
       
       <div class="field">
 	<%= f.label "Имя пользователя", class: "label" %>
@@ -32,7 +32,7 @@
 	</div>
       </div>
       
-      <% unless @user.new_record? %>
+      <% unless user.new_record? %>
 	<div class="field">
 	  <%= f.label "Прежний пароль", class: "label" %>
 	  <div class="control">
@@ -42,8 +42,8 @@
       <% end %>
       
       <div class="control">
-	<%= f.submit (@user.new_record? ? 'Зарегистрироваться' : 'Сохранить'), class: 'button is-link' %>
+	<%= f.submit (user.new_record? ? 'Зарегистрироваться' : 'Сохранить'), class: 'button is-link' %>
       </div>
     <% end %>
   </div> 
-</turbo-frame>
+<% end %>

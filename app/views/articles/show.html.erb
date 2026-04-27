@@ -1,42 +1,43 @@
 <%= currently_at t('nav_menu.home') %>
-
-<div class="article">
-  <div class="columns">
-    <h1 class="is-size-2 ml-2 column is-three-quarters"><%= @article.title %></h1>
-    <div class="column">
-      <% if current_user&.moderator_or_admin? || current_user&.id == @article.user_id %>
-	<div class="article-buttons">
-	  <%= link_to "Изменть", edit_article_path(@article), class: "button is-info" %>
-	  <%= link_to "Удалить", article_path(@article), class: "button is-danger",
-		      data: {
-			turbo_confirm: "Вы уверены?",
-			turbo_method: :delete} %>
-	</div>
+<%= turbo_frame_tag @article do %>
+  <div class="article">
+    <div class="columns">
+      <h1 class="is-size-2 ml-2 column is-three-quarters"><%= @article.title %></h1>
+      <div class="column">
+	<% if current_user&.moderator_or_admin? || current_user&.id == @article.user_id %>
+	  <div class="article-buttons">
+	    <%= link_to "Изменть", edit_article_path(@article), class: "button is-info" %>
+	    <%= link_to "Удалить", article_path(@article), class: "button is-danger",
+			data: {
+			  turbo_confirm: "Вы уверены?",
+			  turbo_method: :delete} %>
+	  </div>
+	<% end %>
+      </div>
+    </div> 
+    <h3 class="is-size-4 ml-2"><%= @article.body %></h3>
+    <div class="pictures">
+      <% @article.pictures.each do |pick| %>
+	<%= image_tag pick.representation(resize_to_limit: [300, 300]), class: "picture"  %>
       <% end %>
     </div>
-  </div> 
-  <h3 class="is-size-4 ml-2"><%= @article.body %></h3>
-  <div class="pictures">
-    <% @article.pictures.each do |pick| %>
-      <%= image_tag pick.representation(resize_to_limit: [300, 300]), class: "picture"  %>
-    <% end %>
   </div>
-</div>
 
-<% if current_user.present? %>
-  <%= form_with model: [@article, @comment] do |f| %>
-    <div class="field">
-      <%= f.label "Написать комментарий:", class: "label ml-2" %>
-      <div class="control mr-5 ml-2">
-	<%= f.text_field :text, class: "input" %>
-      </div>
-      <div class="control mt-3 ml-2">
-	<%= f.submit 'Опубликовать', class: 'button is-link' %>
-      </div>
+  <% if current_user.present? %>
+    <%= form_with model: [@article, @comment] do |f| %>
+      <div class="field">
+	<%= f.label "Написать комментарий:", class: "label ml-2" %>
+	<div class="control mr-5 ml-2">
+	  <%= f.text_field :text, class: "input" %>
+	</div>
+	<div class="control mt-3 ml-2">
+	  <%= f.submit 'Опубликовать', class: 'button is-link' %>
+	</div>
+    <% end %>
   <% end %>
-<% end %>
-<h3 class="ml-2 mt-2">Комментарии:</h3>
+  <h3 class="ml-2 mt-2">Комментарии:</h3>
 
-<% @comments.each do |comment| %>
-  <%= render "comment", comment: comment %>
+  <% @comments.each do |comment| %>
+    <%= render "comment", comment: comment %>
+  <% end %>
 <% end %>
