@@ -1,4 +1,19 @@
 ru:
+ password_reset_mailer:
+  reset_email:
+   subject: "Сброс пароля с сайта TestBlog"
+   title: "Был запрошен сброс пароля для вашего аккаунта"
+   not_you: "Если это были не Вы, игнорируйте это письмо"
+   link: "Сбросить пароль"
+ password_resets:
+  new:
+   title: "Сброс пароля"
+  create:
+   success: "Запрос на восстановление пароля отправлен"
+  form:
+   email: "Введите Email"
+   submit: Сбросить
+   back: Назад
  nav_menu:
   home: "Главная"
   write_article: "Написать статью"
@@ -15,6 +30,9 @@ ru:
    danger: "Что-то пошло не так"
   update:
    success: "Пользователь обновлён"
+ session:
+  form:
+   reset_password: "Забыли пароль?"
  articles:
   form:
    search_label: "Поиск:"

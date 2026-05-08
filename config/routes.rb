@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resource :session, only: %i[new create destroy]
 
+  resource :password_reset, only: %i[new create edit update]
+
   namespace :admin do
     resource :users, only: %i[create edit update destroy]
     get "users_index" => "users#index"

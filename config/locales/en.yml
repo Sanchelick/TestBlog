@@ -1,4 +1,19 @@
 en:
+ password_reset_mailer:
+  reset_email:
+   subject: "Reset password | Testblog"
+   title: "Someone has requested to reset password for you account"
+   not_you: "Ignore it if is not You"
+   link: "Reset Password"
+ password_resets:
+  new:
+   title: "Reset Password"
+  create:
+   success: "Password reset instructions was send to email"
+  form:
+   email: "Input Email"
+   submit: "Submit"
+   back: "Back"
  nav_menu:
   home: "Home"
   write_article: "Write article"
@@ -15,6 +30,9 @@ en:
    danger: "Something was wrong"
   update:
    success: "User update"
+ session:
+  form:
+   reset_password: "Reset Password"
  articles:
   form:
    search_label: "Search:"

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Recoverable
   attr_accessor :old_password, :remember_token, :admin_edit
 #  enum :role, { basic: :basic, moderator: :moderator, admin: :admin }, suffix: :role
   has_secure_password validations: false
@@ -11,7 +12,7 @@ class User < ApplicationRecord
   validate :correct_old_password, on: :update, if: -> {password.present? && !admin_edit}
   
   validates :name, presence: true, length: {minimum: 5}
-  validates :email, presence: true
+  validates :email, presence: true, 'valid_email_2/email': true
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64

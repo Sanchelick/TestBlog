@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       sign_in @user
       respond_to do |format|
         format.html { redirect_to root_path }
-        format.turbo_frames { turbo_stream.redirect_to root_path }
+       # format.turbo_frames { turbo_stream.redirect_to root_path }
       end
     else
       flash.now[:danger] = t('.danger')
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       flash[:success] = t('.success')
       respond_to do |format|
         format.html { redirect_to root_path }
-        format.turbo_frames { turbo_stream.redirect_to root_path }
+        #format.turbo_frames { turbo_stream.redirect_to root_path }
       end
     else
       render :edit

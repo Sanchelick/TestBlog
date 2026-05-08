@@ -1,0 +1,14 @@
+<div class="article-form">
+  <%= form_with url: password_reset_path do |f| %>
+    <div class="field">
+      <%= f.label t('.email'), class: "label" %>
+      <div class="control">
+	<%= f.email_field :email, class: "input", required: true, value: params[:email] %>
+      </div>
+    </div>
+    <div class="control">
+      <%= f.submit t('.submit'), class: 'button is-link' %><br>
+      <%= link_to t('.back'), class: 'has-text-link' %>
+    </div>
+  <% end %>
+</div>
