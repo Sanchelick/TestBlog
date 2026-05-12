@@ -1,39 +1,37 @@
-<%= turbo_frame_tag article do %>
-  <div class="article-form">
-    <%= render 'shared/errors', object: article %>
-    <%= form_with model: article, data: {turbo_frame: "_top"} do |f| %>
-      <div class="columns">
-	<div class="column is-three-quarters">
-	  <div class="field">
-	    <%= f.label "Название", class: "label" %>
-	    <div class="control">
-	      <%= f.text_field :title, class: "input" %>
-	    </div>
-	  </div>
-	  <div class="field">
-	    <%= f.label "Текст", class: "label" %>
-	    <div class="control">
-	      <%= f.text_area :body, class: "input" %>
-	    </div>
-	  </div>
-	  <div>
-	    <%= f.label "Теги (необязательно):", class: "label" %>
-	    <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true,
-	     data: {controller: 'select'} %>
+<div class="article-form">
+  <%= render 'shared/errors', object: article %>
+  <%= form_with model: article, data: {turbo_frame: "_top"} do |f| %>
+    <div class="columns">
+      <div class="column is-three-quarters">
+	<div class="field">
+	  <%= f.label "Название", class: "label" %>
+	  <div class="control">
+	    <%= f.text_field :title, class: "input" %>
 	  </div>
 	</div>
-	<div class="column">
-	  <%= f.label "Изображения (необязательно):", class: "file-label mb-2" %>
-	  <div data-controller="image-preview">
-	    <%= f.file_field :pictures, multiple: true,
-		 data: { action: "image-preview#show", image_preview_target: "source" } %>
-	    <img data-image-preview-target="canvas" hidden />
+	<div class="field">
+	  <%= f.label "Текст", class: "label" %>
+	  <div class="control">
+	    <%= f.text_area :body, class: "input" %>
 	  </div>
 	</div>
+	<div>
+	  <%= f.label "Теги (необязательно):", class: "label" %>
+	  <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true,
+	   data: {controller: 'select'} %>
+	</div>
       </div>
-      <div class="control">
-	<%= f.submit (article.new_record? ? 'Опубликовать' : "Изменить"), class: 'button is-link' %>
+      <div class="column">
+	<%= f.label "Изображения (необязательно):", class: "file-label mb-2" %>
+	<div data-controller="image-preview">
+	  <%= f.file_field :pictures, multiple: true,
+	      data: { action: "image-preview#show", image_preview_target: "source" } %>
+	  <img data-image-preview-target="canvas" hidden />
+	</div>
       </div>
-    <% end %>
-  </div>
-<% end %>
+    </div>
+    <div class="control">
+      <%= f.submit (article.new_record? ? 'Опубликовать' : "Изменить"), class: 'button is-link' %>
+    </div>
+  <% end %>
+</div>

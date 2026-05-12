@@ -1,0 +1,20 @@
+<%= render "shared/errors", object: user %>
+
+<%= form_with model: user, url: password_reset_path, method: :patch do |f| %>
+  <%= f.hidden_field :password_reset_token, value: user.password_reset_token %>
+  <%= f.hidden_field :email, value: user.email %>
+
+  <div class="article-form">
+    <div class="mb-3">
+      <%= f.label t('.password'), class: "label" %>
+      <%= f.password_field :password, class: "input" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label t('.password_confirmation'), class: "label" %>
+      <%= f.password_field :password_confirmation,  class: "input" %>
+    </div>
+
+    <%= f.submit t('.submit'), class: "button is-link" %>
+  </div>
+<% end %>

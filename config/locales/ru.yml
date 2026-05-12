@@ -12,8 +12,17 @@ ru:
    success: "Запрос на восстановление пароля отправлен"
   form:
    email: "Введите Email"
-   submit: Сбросить
-   back: Назад
+   submit: "Сбросить"
+   back: "Назад"
+  edit_form:
+   submit: "Новый пароль"
+   password: "Пароль"
+   password_confirmation: "Подтверждение пароля"
+  edit:
+   fail: "Восстановить пароль не удалось..."
+   title: "Придумайте новый пароль"
+  update:
+   success: "Пароль успешно изменён"
  nav_menu:
   home: "Главная"
   write_article: "Написать статью"

@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   include Recoverable
   attr_accessor :old_password, :remember_token, :admin_edit
+
+  generates_token_for :pasword_reset, expires_in: 60.minutes do
+    password_salt&.last(10)
+  end
 #  enum :role, { basic: :basic, moderator: :moderator, admin: :admin }, suffix: :role
   has_secure_password validations: false
 

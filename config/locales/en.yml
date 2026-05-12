@@ -14,6 +14,15 @@ en:
    email: "Input Email"
    submit: "Submit"
    back: "Back"
+  edit:
+   fail: "Couldn`t reset password..."
+   title: "Create new password"
+  edit_form:
+   submit: "New password"
+   password: "Pssword"
+   password_confirmation: "Password Confirmation"
+  update:
+   success: "Password was changed"	
  nav_menu:
   home: "Home"
   write_article: "Write article"

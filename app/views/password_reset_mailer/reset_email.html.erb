@@ -3,6 +3,5 @@
 
 <h2><%= t('password_reset_mailer.reset_email.not_you') %></h2>
 <p>
-  <%= link_to t('password_reset_mailer.reset_email.link'), edit_password_reset_url(
-    user: {password_reset_token: @user.password_reset_token, email: @user.email}), target: "_blank" %>
+  <%= link_to t('password_reset_mailer.reset_email.link'), edit_password_reset_url(token: @token), target: "_blank" %>
 </p>
