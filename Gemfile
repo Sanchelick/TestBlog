@@ -45,7 +45,7 @@ gem 'rubyzip', '~> 3.2', '>= 3.2.2'
 
 gem 'caxlsx', '~> 4.4', '>= 4.4.1'
 gem 'caxlsx_rails', '~> 0.6.4'
-gem 'rubyXL', '~> 3.4', '>= 3.4.35'
+gem 'rubyXL', '~> 3.4'
 
 gem 'pagy', '~> 43.2', '>= 43.2.8'
 

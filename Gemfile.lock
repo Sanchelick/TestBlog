@@ -346,7 +346,7 @@ GEM
       ffi (~> 1.12)
       logger
     ruby2_keywords (0.0.5)
-    rubyXL (3.4.35)
+    rubyXL (3.4.37)
       nokogiri (>= 1.10.8)
       rubyzip (>= 3.2.2)
     rubyzip (3.3.0)
@@ -449,7 +449,7 @@ DEPENDENCIES
   rails-i18n (~> 8.1)
   ransack (~> 4.4, >= 4.4.1)
   rubocop-rails-omakase
-  rubyXL (~> 3.4, >= 3.4.35)
+  rubyXL (~> 3.4)
   rubyzip (~> 3.2, >= 3.2.2)
   selenium-webdriver
   solid_cable
